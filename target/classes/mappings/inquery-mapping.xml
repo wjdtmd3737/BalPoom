@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="InqueryDAO">
+	
+   <insert id="insertInquery">
+      INSERT INTO board_inquery(inqu_title,m_no, inqu_content, fileName_date, r_no) 
+      VALUES (#{inqu_title},#{m_no}, #{inqu_content}, #{fileName_date}, #{r_no})
+   </insert>
+	
+	<update id="updateInquery">
+		<![CDATA[
+			UPDATE board_inquery SET
+				inqu_title = #{inqu_title}, 
+				inqu_content = #{inqu_content} 
+			WHERE inqu_no = #{inqu_no}
+		]]>
+	</update>
+	
+	<delete id="deleteInquery">
+		<![CDATA[
+			DELETE FROM board_inquery 
+			WHERE inqu_no = #{inqu_no}
+		]]>
+	</delete>
+	
+	<select id="getInquery" resultType="Inquery">
+		select * from (select bo.inqu_no, bo.inqu_title, bo.inqu_cnt, bo.inqu_content,bo.inqu_reg,bo.m_no, bo.r_no, me.m_name,m_id,bo.fileName_date from board_inquery bo, member me where bo.m_no = me.m_no) sub where sub.inqu_no = #{inqu_no}
+	</select>
+	
+	<select id="getInqueryList" resultType="Inquery">
+		SELECT * 
+		FROM (select bo.inqu_no, bo.inqu_title, bo.inqu_cnt, bo.inqu_content, bo.inqu_reg, bo.m_no, bo.r_no, me.m_name,m_id from board_inquery bo, member me where bo.m_no = me.m_no) sub
+		WHERE r_no=#{r_no}
+		ORDER BY inqu_no DESC limit #{startRow}, #{size}
+	</select>
+		
+	
+	<update id="updateCnt"> 
+
+		UPDATE board_inquery set inqu_cnt = inqu_cnt + 1 where inqu_no = #{inqu_no}
+
+	</update>
+	
+	<select id="getInqueryMypageList" resultType="Inquery">
+		select * from board_inquery, register where board_inquery.r_no = register.r_no and board_inquery.m_no = #{m_no}
+	</select>
+	
+	<select id="getCountTotalInquery" resultType="Inquery">
+		select * from board_inquery bi, member m
+		where bi.m_no= m.m_no and bi.r_no = #{r_no};
+	</select>
+	
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.balpoom.member.MemberVO" alias="member"></typeAlias>
+		<typeAlias type="com.balpoom.notice.NoticeVO" alias="notice"/>
+		<typeAlias type="com.balpoom.inquery.InqueryVO" alias="Inquery"/>
+		<typeAlias type="com.balpoom.inquery_reply.Inquery_replyVO" alias="Inquery_reply"/>
+		<typeAlias type="com.balpoom.cart.BasketVO" alias="basket"/>
+		<typeAlias type="com.balpoom.seller.SellerVO" alias="seller"/>
+		<typeAlias type="com.balpoom.product.ProductVO" alias="product"/>
+		<typeAlias type="com.balpoom.product.OverallProductVO" alias="overall"/>
+		<typeAlias type="com.balpoom.order.OrderVO" alias="order"/>
+		<typeAlias type="com.balpoom.product.RegisterVO" alias="register"/>
+		<typeAlias type="com.balpoom.review.ReviewVO" alias="Review"/>
+		<typeAlias type="com.balpoom.seller.SellerLookupVO" alias="sellerOrderList"/>
+		
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappings/member-mapping.xml" />
+		<mapper resource="mappings/notice-mapping.xml"/>
+		<mapper resource="mappings/inquery-mapping.xml"/>
+		<mapper resource="mappings/inquery_reply-mapping.xml"/>
+		<mapper resource="mappings/basket-mapping.xml"/>
+		<mapper resource="mappings/seller-mapping.xml"/>
+		<mapper resource="mappings/product-mapping.xml"/>
+		<mapper resource="mappings/order-mapping.xml"/>
+		<mapper resource="mappings/register-mapping.xml"/>
+		<mapper resource="mappings/review-mapping.xml"/>
+	</mappers>
+</configuration>

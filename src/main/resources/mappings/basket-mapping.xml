@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BasketDAO">
+	<!-- <insert id="addBasket"> </insert> <delete id="deleteBasket"> </delete> -->
+	
+	<delete id="deleteBasket">
+		DELETE FROM cart WHERE c_no = #{c_no}
+	</delete>
+	
+	<!-- 주문 후 삭제 -->
+	<delete id="order_after_delete">
+		delete from cart where validity = 2
+	</delete>
+	
+	<select id="getBasketList" resultType="basket">
+		select c_no,m_no,p_name,c_cnt,p_price,cart.p_identifier from cart,product
+		where cart.p_identifier = product.p_identifier
+		and validity = 1 and cart.m_no = #{m_no};
+	</select>
+	
+	<update id="order_rs_cart_del">
+		update cart set validity = 2 where validity = 1;
+	</update>
+	
+	<update id="best_rs_product_number">
+		update register set order_cnt = order_cnt +1 where p_common_name in(
+		select distinct p_common_name from cart, product 
+		where product.p_identifier = cart.p_identifier and cart.validity = 1)
+	</update>
+	
+	<insert id="addBasket">
+		insert into cart(m_no,c_cnt,p_identifier) 
+		values(#{m_no}, #{c_cnt}, #{p_identifier});
+	</insert>
+	
+</mapper>

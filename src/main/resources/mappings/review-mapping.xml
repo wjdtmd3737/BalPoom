@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="ReviewDAO">
+  	<select id="getReview" resultType="Review">
+  		select * from (select re.r_no,re.re_no, re.re_title, re.re_content, re.m_no, re.re_reg, re.m_name, me.m_id, re.fileName_date from review re, member me where re.m_no = me.m_no) sub where sub.re_no = #{re_no}
+  	</select> 
+  	<select id="getReviewList" resultType="Review">
+  		select * from review 
+  		where r_no = #{r_no}
+  		order by re_no desc limit #{startRow}, #{size}
+  	</select>
+  	
+  	<select id="insertReview">
+  		insert into review(m_name, re_content, re_title,m_no, fileName_date,r_no) values (#{m_name}, #{re_content}, #{re_title},#{m_no}, #{fileName_date},#{r_no})
+  	</select>
+  	
+  	<select id="deleteReview">
+  		delete from review where re_no = #{re_no}
+  	</select>
+  	
+  	<select id="updateReview">
+  		update review set re_content = #{re_content}, re_title = #{re_title} where re_no=#{re_no}
+  	</select>
+  	
+  	<select id="getReviewMypageList" resultType="Review">
+  		select * from review, register where review.r_no = register.r_no and review.m_no = #{m_no}
+  	</select>
+  	
+  	<select id="getTotalReviewCount" resultType="Review">
+  		select * from review
+  		where r_no = #{r_no}
+  	</select>
+  </mapper>

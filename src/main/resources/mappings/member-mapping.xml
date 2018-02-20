@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDAO">
+
+
+	<insert id="insertMember">
+		insert into member(m_name,m_id,m_password,m_address_postcode
+		,m_address_primary,m_address_detail,m_email_id,
+		m_email_domain,m_cellphone1,m_cellphone2,m_cellphone3,
+		m_phoneNum1,m_phoneNum2,m_phoneNum3,m_birth) 
+		values( #{m_name}, #{m_id}, #{m_password}, #{m_address_postcode},
+		 #{m_address_primary}, #{m_address_detail}, #{m_email_id},
+		 #{m_email_domain},#{m_cellphone1},#{m_cellphone2},
+		 #{m_cellphone3},#{m_phoneNum1},#{m_phoneNum2},#{m_phoneNum3},
+		 #{m_birth});
+	</insert>
+	
+	<select id="getMember" resultType="member">
+		select * from member
+		where m_id=#{m_id} and m_password=#{m_password}
+	</select>
+	
+	<update id="verifyMember">
+		update member set m_verify='y' where m_email_id=#{m_email_id} and m_email_domain=#{m_email_domain}
+	</update>
+	
+	<select id="checkDuplicate" resultType="member">
+		<![CDATA[
+			SELECT * FROM member
+			WHERE m_id =#{m_id}
+		]]>
+	</select>
+	
+	<update id="updateMember">
+		update member set m_password=#{m_password},
+		m_address_postcode=#{m_address_postcode}, 
+		m_address_primary=#{m_address_primary},
+		m_address_detail=#{m_address_detail},
+		m_email_id=#{m_email_id},
+		m_email_domain=#{m_email_domain},
+		m_cellphone1=#{m_cellphone1},
+		m_cellphone2=#{m_cellphone2},
+		m_cellphone3=#{m_cellphone3},
+		m_phoneNum1=#{m_phoneNum1},
+		m_phoneNum2=#{m_phoneNum2},
+		m_phoneNum3=#[m_phoneNum3},
+		m_birth=#{m_birth}
+		where m_no=#{m_no}
+	</update>
+	
+	<select id="searchID" resultType="member">
+		select * from member
+		where m_name=#{m_name} and m_email_id=#{m_email_id} and m_email_domain=#{m_email_domain}
+	</select>
+	
+	<update id="updatePW">
+		update member set m_password=#{m_password} 
+		where m_id=#{m_id} and m_email_id=#{m_email_id} and m_email_domain=#{m_email_domain}
+	</update>
+</mapper>

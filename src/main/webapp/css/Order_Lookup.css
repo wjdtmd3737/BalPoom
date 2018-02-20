@@ -1,0 +1,90 @@
+*{
+	margin: 0;
+	padding: 0; 
+	height: 100%;
+	width: 100%;
+	font-family: '맑은 고딕';
+}
+
+#order_lookup{
+	 width: 1200px;
+ 	 height: auto;
+	 margin: auto;
+	 position:relative;
+}
+
+.titleArea{
+	width: 1200px;
+	height: auto;
+	text-align: center;
+	margin-top: 72px;
+}
+
+.table_list{
+	margin:auto;
+	width: 1000px;
+	height: auto;
+}
+.table_list tbody tr > td{
+	font-size: 12px;
+}
+
+#tx_btn_order_detail{
+	border: solid 1px;
+	width: 40px;
+	height: 20px;
+}
+
+.order_detail{
+	display:block;
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+}
+
+#tx_btn_delivery_status{
+	border: solid 1px;
+	width: 40px;
+	height: 20px;
+}
+
+.delivery_status{
+	display:block;
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+}
+
+.recommendation{
+	border: solid 1px;
+	width: 1000px;
+	height: 350px;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 80px;
+	
+}
+
+.recommendation_title{
+	border:solid 1px;
+	width: 1000px;
+	height: 40px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.list_recommendation{
+	border: solid 1px;
+	width: 950px;
+	height: 280px;
+	margin: auto;
+	margin-top: 15px;
+}
+
+.footer{
+	margin:auto;
+	width: 1200px;
+	height: 370px;
+	position: relative;
+	
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductDAO">
+	
+	<insert id="insertRegister">
+		insert into register set
+		r_reg = #{r_reg},
+		 p_common_name = #{p_common_name},
+		 s_no = #{s_no},fileNameDate=#{fileNameDate}
+	</insert>
+	
+	<select id="getRegister" resultType="register">
+		select * from register where p_common_name = #{p_common_name}
+	</select>
+</mapper>

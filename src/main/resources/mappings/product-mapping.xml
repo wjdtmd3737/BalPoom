@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductDAO">
+	<select id="getProduct" resultType="product">
+		select * from (select
+		p.p_identifier,p.r_no,p.p_name,p.p_type,p.p_price,
+		p.p_cnt,p.p_s1,p.p_s2,p.p_s3,p.p_s4,p.p_s5,p.p_color,p.p_size,p.p_common_name,p.p_type_detail,p.s_no,
+		r.r_reg,r.fileNameDate from product p, register r where p.r_no =
+		r.r_no) sub where sub.r_no = #{r_no};
+	</select>
+	<select id="getProductC" resultType="product">
+		select p_color from product
+		where r_no=#{r_no} group by p_color;
+	</select>
+	<select id="getProductS" resultType="product">
+		select p_size from product
+		where r_no=#{r_no} group by p_size;
+	</select>
+
+	<select id="getOveralls" resultType="overall">
+		select distinct
+		p_name,p_price,s.s_busi_name,p_type,p_type_detail,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type} limit #{startRow}, #{size}
+	</select>
+
+	<select id="getTotalOveralls" resultType="overall">
+		select distinct
+		p_name,p_price,s.s_busi_name,p_type,p_type_detail,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type}
+	</select>
+
+	<select id="getOverallsDetails" resultType="overall">
+		select distinct
+		p_name,p_price,s.s_busi_name,p_type,p_type_detail,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type} and p_type_detail=#{p_type_detail} limit #{startRow},
+		#{size}
+	</select>
+
+	<select id="getTotalOverallDetails" resultType="overall">
+		select distinct
+		p_name,p_price,s.s_busi_name,p_type,p_type_detail,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type} and p_type_detail=#{p_type_detail}
+	</select>
+
+	<select id="getBests" resultType="overall">
+		select distinct
+		p_name,p_price,p_type,p_type_detail,s.s_busi_name,r.order_cnt,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type}
+		order by r.order_cnt DESC limit 0,3;
+	</select>
+	<select id="getIndexBests" resultType="overall">
+		select distinct
+		p_name,p_price,p_type,p_type_detail,s.s_busi_name,r.order_cnt,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type}
+		order by r.order_cnt DESC limit 0,6;
+	</select>
+
+	<select id="doFitple" resultType="overall">
+		select distinct
+		p_name,p_price,s.s_busi_name,p_type,p_type_detail,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type} and
+		p_s1 between #{p_s1}-1 and #{p_s1}+1 and
+		p_s2
+		between #{p_s2}-1 and #{p_s2}+1 and
+		p_s3 between #{p_s3}-1 and
+		#{p_s3}+1 and
+		p_s4 between #{p_s4}-1 and #{p_s4}+1 and
+		p_s5 between
+		#{p_s5}-1 and #{p_s5}+1
+	</select>
+
+	<select id="getTotalFitple" resultType="overall">
+		select distinct
+		p_name,p_price,s.s_busi_name,p_type,p_type_detail,r.p_common_name,r.r_reg,r.r_no
+		from register r,product p, seller s
+		where
+		r.p_common_name=p.p_common_name and s.s_no = r.s_no and
+		p_type=#{p_type} and
+		p_s1 between #{p_s1}-1 and #{p_s1}+1 and
+		p_s2
+		between #{p_s2}-1 and #{p_s2}+1 and
+		p_s3 between #{p_s3}-1 and
+		#{p_s3}+1 and
+		p_s4 between #{p_s4}-1 and #{p_s4}+1 and
+		p_s5 between
+		#{p_s5}-1 and #{p_s5}+1
+	</select>
+
+	<insert id="insertProduct">
+		insert into product set
+		p_identifier = #{p_identifier},
+		r_no = #{r_no},
+		<!-- r_no = 2, -->
+		p_name = #{p_name},
+		p_type = #{p_type},
+		p_price = #{p_price},
+		p_s1 =
+		#{p_s1},
+		p_s2 = #{p_s2},
+		p_s3 = #{p_s3},
+		p_s4 = #{p_s4},
+		p_s5 = #{p_s5},
+		p_color = #{p_color},
+		p_size = #{p_size},
+		p_common_name =
+		#{p_common_name},
+		p_type_detail = #{p_type_detail},
+		s_no = #{s_no}
+
+	</insert>
+
+	<select id="getSellerProductList" resultType="product">
+		SELECT * FROM
+		product, seller where seller.s_no=product.s_no and
+		product.s_no=#{s_no};
+	</select>
+
+	<update id="updateSellerProduct">
+		UPDATE product SET p_cnt=#{p_cnt} WHERE s_no =
+		#{s_no} and p_identifier = #{p_identifier}
+	</update>
+
+	<select id="getChangeCnt" resultType="product">
+		select * from product where
+		s_no = #{s_no} and p_identifier = #{p_identifier}
+	</select>
+</mapper>

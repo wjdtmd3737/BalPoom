@@ -1,0 +1,179 @@
+* {
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	font-family: '맑은고딕';
+}
+.frame a:link {  text-decoration: none;}
+.frame a:visited { text-decoration: none;}
+.frame a:hover { text-decoration: underline;}
+.wraper {
+	min-height: 2800px;
+	width: 1200px;
+	position: relative;
+	margin: auto;
+	padding:0, 10px, 0px, 10px;
+}
+#slide_container{
+	width: 1200px;
+	height: auto;
+}
+.slides{
+	display: none;
+}
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+#dot_group{
+	height: 50px;
+}
+#left{
+  top:1600px;
+  left:-5%;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+}
+#right{
+  top: 1600px;
+  right: -5%;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+}
+#best_pro_div{
+	width:1200px;
+	height:1150px;
+	overflow-x: hidden;
+  	white-space: nowrap;
+}
+.frame{
+	width:1200px;
+	height:1150px;
+	display: inline-block;
+}
+
+#title1{
+	border:1px solid green;
+	width:1200px;
+	height:1150px;
+}
+.line1{
+	width: 1200px;
+	height: 460px;
+}
+.line2{
+	width: 1200px;
+	height: 460px;;
+}
+#boTitle{
+	width:1200px;
+	height: 20px;
+	text-align: center;
+	font-weight: 1000;
+}
+.bestOuter{
+	display:inline-block;
+	margin:25px;
+	width:350px;
+	height:auto;
+}
+   #divImg{
+     /* border: 2px solid blue; */
+     width: 350px;
+     height:auto;
+     max-height:400px;
+     position: relative;
+   }
+   #divImg img {
+     width: 350px;
+     height:auto;
+     max-height:400px;
+      }
+#divImg:hover > .img1{
+    opacity: 0;
+  }
+  #divImg:hover > .img2{
+    opacity: 1;
+          transition:  1s;
+  }
+    .img2{
+	left:0;
+      position: absolute;
+      opacity: 0;
+    }
+  #storeName{
+       height: auto;
+       margin-top: 0;
+       margin-bottom: 2px;
+       font-size: 14px;
+       font-weight: 700;
+   }
+   #productName{
+     height: auto;
+       margin-top: 0;
+       margin-bottom: 6px;
+       font-size: 13px;
+       font-weight: 500;
+   }
+   #price{
+     height: auto;
+       margin-top: 0;
+       margin-bottom: 6px;
+       font-size: 13px;
+       font-weight: 600;
+       color: rgb(141, 140, 140);
+   }
+   
+   
+   #btn_group{
+  position: absolute;
+  display: inline-block;
+  top: 78%;
+  left: 44%;
+  width: 95px;
+  height: 20px;
+  /* background: red; */
+}
+#btn_move1{
+  background: #6f6f6f;
+}
+.button_move{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+ 

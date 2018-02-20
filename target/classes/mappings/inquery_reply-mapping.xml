@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Inquery_replyDAO">
+	
+	<insert id="insertInquery_reply">
+		INSERT INTO board_inquery_reply(inqu_reply_content, inqu_no) VALUES(#{inqu_reply_content}, #{inqu_no})
+	</insert>
+		
+	<delete id="deleteInquery_reply">
+		DELETE FROM board_inquery_reply WHERE inqu_reply_no = #{inqu_reply_no}
+	</delete>
+	
+	<select id="getInquery_replyList" resultType="inquery_reply">
+		SELECT * FROM board_inquery_reply where inqu_no=#{inqu_no}
+	</select>
+	<update id="updateInquery_reply">
+		UPDATE board_inquery_reply SET inqu_reply_content=#{inqu_reply_content} where inqu_reply_no =#{inqu_reply_no}
+	</update>
+</mapper>
