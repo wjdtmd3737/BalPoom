@@ -21,9 +21,9 @@
 	<!-- DataSource 설정 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://ndgndg91.synology.me:3307/balpoom?useSSL=true"></property>
-		<property name="username" value="balpoom"></property>
-		<property name="password" value="balpoom"></property>
+		<property name="url" value="jdbc:mysql://localhost:3307/balpoom?useSSL=true"></property>
+		<property name="username" value=""></property>
+		<property name="password" value=""></property>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
